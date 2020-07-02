@@ -1,0 +1,31 @@
+//変数"entryassetscount"に"0"を設定する
+<mt:SetVar name="entryassetscount" value="0">
+
+<mt:Entries>
+
+  //記事ごとのアセットの数を調べて、アセットがあったら"entryassetscount"に設定する
+  <mt:EntryAssets>
+    <mt:SetVar name="entryassetscount" value="1" op="+">
+  </mt:EntryAssets>
+
+  <mt:If name="entryassetscount" eq="0">
+  //調べた記事ごとのアセットの数"entryassetscount"が"0"（アセットがない）の場合の処理
+
+  <mt:ElseIf name="entryassetscount" ge="2">
+  //調べた記事ごとのアセットの数"entryassetscount"が"2"以上の場合の処理
+
+    //"entryassetscount"から"1"をマイナスして"entryassetscount"に設定する
+    <mt:SetVar name="entryassetscount" value="1" op="-">
+
+    //後から登録された記事内の画像を"entryassetscount"の数だけ除外して、記事に一番最初に登録されたアセットを対象に処理をするようする
+    <mt:EntryAssets offset="$entryassetscount" lastn="1"><mt:AssetThumbnailURL></mt:EntryAssets>
+
+  <mt:Else>
+  //調べた記事ごとのアセットの数"entryassetscount"が"1"の場合の処理
+
+    <mt:EntryAssets lastn="1"><mt:AssetThumbnailURL width="320"></mt:EntryAssets>
+    //記事に登録されたアセットを使用する
+
+  </mt:If>
+
+</mt:Entries>
