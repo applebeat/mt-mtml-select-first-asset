@@ -1,7 +1,7 @@
+<mt:Entries>
+
 //変数"entryassetscount"に"0"を設定する
 <mt:SetVar name="entryassetscount" value="0">
-
-<mt:Entries>
 
   //記事ごとのアセットの数を調べて、アセットがあったら"entryassetscount"に設定する
   <mt:EntryAssets>
